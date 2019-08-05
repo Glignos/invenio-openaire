@@ -35,7 +35,7 @@ tests_require = [
     'check-manifest>=0.25',
     'coverage>=4.0',
     'invenio-celery>=1.0.0a3',
-    'invenio-db[mysql,postgresql]>=1.0.0a9',
+    'invenio-db>=1.0.0a9',
     'invenio-search>=1.0.0a7',
     'isort>=4.2.2',
     'jsonschema>=2.5.1',
@@ -71,7 +71,7 @@ extras_require = {
 extras_require['all'] = []
 for name, reqs in extras_require.items():
     if name in (
-            'mysql', 'postgresql', 'sqlite', 'elasticsearch2',
+            'elasticsearch2',
             'elasticsearch5', 'elasticsearch6', 'elasticsearch7'):
         continue
     extras_require['all'].extend(reqs)
