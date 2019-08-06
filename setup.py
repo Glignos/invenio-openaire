@@ -34,9 +34,8 @@ history = open('CHANGES.rst').read()
 tests_require = [
     'check-manifest>=0.25',
     'coverage>=4.0',
-    'invenio-celery>=1.0.0a3',
-    'invenio-db>=1.0.0a9',
-    'invenio-search>=1.0.0a7',
+    'invenio-celery>=1.1.0',
+    'invenio-db>=1.0.1',
     'isort>=4.2.2',
     'jsonschema>=2.5.1',
     'mock>=1.3.0',
@@ -47,7 +46,7 @@ tests_require = [
     'pytest>=2.8.0',
 ]
 
-invenio_search_version = '1.0.0'
+invenio_search_version = '1.2.0'
 
 extras_require = {
     'docs': [
@@ -85,11 +84,11 @@ install_requires = [
     'Flask>=0.11.1',
     'Flask-BabelEx>=0.9.2',
     'Flask-Login>=0.3.2',
-    'invenio-indexer>=1.0.0a8',
-    'invenio-jsonschemas>=1.0.0a2',
-    'invenio-pidstore>=1.0.0a7',
-    'invenio-records-rest>=1.0.0a15',
-    'invenio-records>=1.0.0a14',
+    'invenio-indexer>=1.1.0',
+    'invenio-jsonschemas>=1.0.0',
+    'invenio-pidstore>=1.0.0',
+    'invenio-records-rest>=1.5.0',
+    'invenio-records>=1.3.0',
     'jsonref>=0.1',
     'jsonresolver>=0.2.1',
     'requests>=2.9.1',
