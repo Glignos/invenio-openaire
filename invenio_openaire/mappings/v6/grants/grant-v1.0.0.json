@@ -5,22 +5,22 @@
       "numeric_detection": false,
       "properties": {
         "$schema": {
-          "type": "string",
-          "index": "not_analyzed"
+          "type": "keyword"
         },
         "internal_id": {
-          "type": "string",
-          "index": "not_analyzed"
+          "type": "keyword"
+        },
+        "legacy_id": {
+          "type": "keyword"
         },
         "code": {
-          "type": "string",
-          "index": "not_analyzed"
+          "type": "keyword"
         },
         "title": {
-          "type": "string"
+          "type": "text"
         },
         "acronym": {
-          "type": "string"
+          "type": "text"
         },
         "startdate": {
           "type": "date",
@@ -34,35 +34,30 @@
           "type": "object",
           "properties": {
             "doi": {
-              "type": "string",
-              "index": "not_analyzed"
+              "type": "keyword"
             },
             "identifiers": {
               "type": "object",
               "properties": {
                 "oaf": {
-                  "type": "string",
-                  "index": "not_analyzed"
+                  "type": "keyword"
                 }
               }
             },
             "name": {
-              "type": "string"
+              "type": "text"
             },
             "acronyms": {
-              "type": "string"
+              "type": "text"
             },
             "country": {
-              "type": "string",
-              "index": "not_analyzed"
+              "type": "keyword"
             },
             "type": {
-              "type": "string",
-              "index": "not_analyzed"
+              "type": "keyword"
             },
             "subtype": {
-              "type": "string",
-              "index": "not_analyzed"
+              "type": "keyword"
             },
             "remote_created": {
               "type": "date"
@@ -73,44 +68,38 @@
           }
         },
         "program": {
-          "type": "string"
+          "type": "text"
         },
         "remote_modified": {
           "type": "date",
           "ignore_malformed": true
         },
         "url": {
-          "type": "string"
+          "type": "text"
         },
         "identifiers": {
           "type": "object",
           "properties": {
             "oai_id": {
-              "type": "string",
-              "index": "not_analyzed"
+              "type": "keyword"
             },
             "purl": {
-              "type": "string",
-              "index": "not_analyzed"
+              "type": "keyword"
             },
             "eurepo": {
-              "type": "string",
-              "index": "not_analyzed"
+              "type": "keyword"
             }
           }
         },
         "suggest": {
           "type": "completion",
-          "analyzer" : "snowball",
-          "search_analyzer" : "snowball",
-          "payloads" : true,
-          "context": {
-            "funder": {
-              "type": "category",
-              "path": "funder.doi",
-              "default": ""
-            }
-          }
+          "analyzer" : "standard",
+          "search_analyzer" : "standard",
+          "contexts": [{
+                "name" : "funder",
+                "type": "category",
+                "path": "funder.doi"
+          }]
         }
       }
     }

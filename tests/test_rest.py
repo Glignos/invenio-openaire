@@ -52,14 +52,23 @@ def test_records_rest(app, db, es, grants):
         # Suggest
         res = client.get("/funders/_suggest?text=Uni")
         assert res.status_code == 200
-
-        # Item
+        options = res.json['text'][0]['options']
+        assert len(options) == 2
+        assert [option['_source']['doi'] for option in options].sort() == [
+                     '0.13039/501100000923', '10.13039/001'].sort()
         res = client.get("/grants/10.13039/501100000923::LP0667725")
         assert res.status_code == 200
         # List
         res = client.get("/grants/")
         assert res.status_code == 200
         # Suggest
+        funder = '10.13039/501100000923'
         res = client.get(
-            "/grants/_suggest?text=open&funder=10.13039/501100000923")
-        assert res.status_code == 200
+            "/grants/_suggest?text=LP&funder={0}".format(funder))
+        options = res.json['text'][0]['options']
+        assert len(options) == 3
+        assert [(option['_source']['code'],
+                 option['_source']['funder']['doi']) for option in options
+                ].sort() == [
+                    ('LP0989479', funder), ('LP0667725', funder),
+                    ('LP0215942', funder)].sort()

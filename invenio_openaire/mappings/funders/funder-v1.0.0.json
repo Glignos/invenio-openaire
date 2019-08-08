@@ -52,9 +52,8 @@
         },
         "suggest": {
           "type": "completion",
-          "analyzer" : "snowball",
-          "search_analyzer" : "snowball",
-          "payloads" : true
+          "analyzer" : "standard",
+          "search_analyzer" : "standard"
         }
       }
     }

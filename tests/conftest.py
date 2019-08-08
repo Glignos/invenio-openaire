@@ -48,6 +48,7 @@ from invenio_records import InvenioRecords
 from invenio_records.models import RecordMetadata
 from invenio_records_rest.utils import PIDConverter, PIDPathConverter
 from invenio_search import InvenioSearch, current_search
+from invenio_search.errors import IndexAlreadyExistsError
 from sqlalchemy_utils.functions import create_database, database_exists
 
 from invenio_openaire import InvenioOpenAIRE
@@ -142,7 +143,7 @@ def es(app):
     """Provide elasticsearch access."""
     try:
         list(current_search.create())
-    except RequestError:
+    except (RequestError, IndexAlreadyExistsError):
         list(current_search.delete(ignore=[404]))
         list(current_search.create(ignore=[400]))
     yield current_search
